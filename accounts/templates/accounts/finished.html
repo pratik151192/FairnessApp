@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Congratulations</title>
+<style>
+    .jumbotron {
+            margin-bottom:2px;
+            padding-bottom:10px;
+        }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="jumbotron">
+    <h1 class="display-3">Thank you!</h1>
+    <p class="lead">We are glad that you took out your precious time to complete the study for us.</p>
+    <p>You have completed your study!</p>
+</div>
+<div class="container">
+    <p><h2>You can logout now!</h2></p><hr>
+    <a href="/accounts/logout/" class="btn btn-outline-info" role="button" aria-pressed="true">Logout</a></p>
+</div>
+{% endblock %}

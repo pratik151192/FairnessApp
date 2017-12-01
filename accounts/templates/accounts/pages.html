@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Content</title>
+````<style>
+        button {
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        $( document ).ready(function() {
+            $('#next').hide()
+            $('#privacy').hide()
+            $('#Yes').click(function() {
+                $('#next').hide()
+                $('#privacy').show()
+            });
+            $('#No').click(function() {
+                $('#privacy').hide()
+                $('#next').show();
+            });
+         });
+    </script>
+{% endblock %}
+
+{% block body %}
+<br><br>
+{% if not preference and not change %}
+    <div class="container">
+        <div class="alert alert-warning" role="alert">
+            <strong>Warning!</strong> Please reload the page if you're not seeing the image!
+        </div>
+
+    <b>Please look at the below image and read the associated content. Kindly answer the question
+        as if it were a real-life situation.</b></div><br><br>
+    <div height="200" width="200">
+        <center><img src="/static/images/{{ image_id }}.png" alt="My image" height="100%" width="500" /></center>
+    </div>
+
+    <div class="container">
+        {{ text }}<hr>
+        <p>
+        <b>Please indicate your preference</b>:<br>
+            {{ name }} would like to tag you on this post, and share it to <b>{{ setting }}</b> settings. Do you agree?</p>
+    <form method="post">
+        {% csrf_token %}
+        <center><p><button id="PYes" type="submit" class="btn btn-success"
+                      role="button" aria-pressed="true" name="preference" value="Yes">Yes</button>
+            <button id="PNo" type="submit" class="btn btn-danger"
+                    role="button" aria-pressed="true" name="preference" value="No">No</button></p></center>
+    </form>
+        <br>
+    </div>
+{% endif %}
+<div class="container">
+{% if preference %}
+    {% if 'Yes' in preference %}
+        <p>Yayy! We agree with your choice!</p>
+        <script>
+            $( document ).ready(function() {
+                $('#next').show()
+            })
+        </script>
+    {% elif 'No' in preference %}
+
+        <p>Nooooo!!! We don't agree with you in this case!</p>
+        Would you like to change your privacy preference?<hr>
+        <button id="Yes" type="button" class="btn btn-success" role="button" aria-pressed="true" name="choice" value="Yes">Yes</button>
+        <button id="No" type="button" class="btn btn-danger" role="button" aria-pressed="true" name="choice" value="No">No</button>
+        <br><br>
+        <div id="privacy">
+            <center><b>Please set your new privacy preference.</b><br><br>
+            <form method="post" name="privacy">
+                {% csrf_token %}
+                <p>
+                    <button class="btn btn-outline-danger" type="submit" role="button" name="change" aria-pressed="true" value="0">Private/Only me</button>
+                    <button class="btn btn-outline-warning" type="submit" role="button" name="change" aria-pressed="true" value="0.25">Friends</button>
+                    <button class="btn btn-outline-info" type="submit" role="button" name="change" aria-pressed="true" value="0.5">Friends of Friends</button>
+                    <button class="btn btn-outline-success" type="submit" role="button" name="change" aria-pressed="true" value="0.75">Friends of Friends of Friends</button>
+                    <button class="btn btn-outline-primary" type="submit" role="button" name="change" aria-pressed="true" value="1">Public</button>
+                </p>
+            </form></center>
+        </div>
+    {% endif %}
+    <div id="next">
+        <form method="post">
+            {% csrf_token %}
+            <b>Let's continue with the study!</b>
+            <button type="submit" class="btn btn-info"
+                    role="button" aria-pressed="true" name="next" value="Next">Next</button>
+        </form>
+    </div>
+{% endif %}
+
+{% if 'Yes' in change %}
+<form method="post">
+    {% csrf_token %}
+    <b>Let's continue with the study!</b>
+    <button type="submit" class="btn btn-info"
+            role="button" aria-pressed="true" name="next" value="Next">Next</button>
+</form>
+{% endif %}
+</div>
+
+{% endblock %}

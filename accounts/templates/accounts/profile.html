@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Profile</title>
+    <style>
+        button {
+            cursor:pointer;
+        }
+    </style>
+
+{% endblock %}
+
+{% block body %}
+<br><br>
+<div class="container">
+    {% if image_id == 1 and firstLogin == True %}
+    <b><font size="6">Welcome, </font></b><font size="5">{{ username|title }}</font><hr>
+    <p style="text-align:justify">You have agreed to take part in a user study. We will show you a series of photos.<br>
+    After watching each photo, kindly respond if you'd like to share the photo to your network. <br>
+        <br>Before beginning your study, please answer the below questions:
+        {% if not 'Yes' in offeror %}
+            <form method="post" name="offeror">
+                {% csrf_token %}
+                <div id="offeror">
+                <p>    <b>In general, who can see posts you're tagged in on your network?</b></p>
+                <p>
+                    <button class="btn btn-outline-danger" role="button" name="offeror" aria-pressed="true" value="0">Private/Only me</button>
+                    <button class="btn btn-outline-warning" role="button" name="offeror" aria-pressed="true" value="0.25">Friends</button>
+                    <button class="btn btn-outline-info" role="button" name="offeror" aria-pressed="true" value="0.5">Friends of Friends</button>
+                    <button class="btn btn-outline-success" role="button" name="offeror" aria-pressed="true" value="0.75">Friends of Friends of Friends</button>
+                    <button class="btn btn-outline-primary" role="button" name="offeror" aria-pressed="true" value="1">Public</button>
+                </p>
+                </div>
+            </form>
+        {% elif not 'Yes' in acceptor %}
+            <form method="post" name="acceptor">
+                {% csrf_token %}
+                <div id="acceptor">
+                    <p><b>In general, when you're tagged in a post, who do you want to add to the audience of the post if they can't already see it?</b></p>
+                <p>
+                    <button class="btn btn-outline-danger" type="submit" role="button" name="acceptor" aria-pressed="true" value="0">Private/Only me</button>
+                    <button class="btn btn-outline-warning" type="submit" role="button" name="acceptor" aria-pressed="true" value="0.25">Friends</button>
+                    <button class="btn btn-outline-info" type="submit" role="button" name="acceptor" aria-pressed="true" value="0.5">Friends of Friends</button>
+                    <button class="btn btn-outline-success" type="submit" role="button" name="acceptor" aria-pressed="true" value="0.75">Friends of Friends of Friends</button>
+                    <button class="btn btn-outline-primary" type="submit" role="button" name="acceptor" aria-pressed="true" value="1">Public</button>
+                </p>
+                </div>
+            </form>
+
+        {% elif 'Yes' in offeror and 'Yes' in acceptor %}
+        <p><b>Now you may begin your study</b></p>
+            <form method="POST" action="/accounts/pages/">
+                {% csrf_token %}
+                <button class="btn btn-info"
+                        role="button" aria-pressed="true" name="began" type="submit">Begin Study</button></form>
+        </div>
+        {% endif %}
+    {% endif %}
+
+    {% if image_id > 1 or firstLogin == False %}
+    <b><font size="6">Welcome, </font></b><font size="5">{{ username|title }}</font><hr>
+    <p>You have already started your study. Please continue </p>
+    <form method="POST" action="/accounts/pages/">
+        {% csrf_token %}
+        <button class="btn btn-info"
+                role="button" aria-pressed="true" name="continue" type="submit">Continue Study</button>
+    </form>
+
+    {% endif %}
+</div>
+{% endblock %}

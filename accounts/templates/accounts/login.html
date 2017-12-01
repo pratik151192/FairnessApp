@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Login</title>
+    <style>
+        .jumbotron {
+            margin-bottom:0;
+            padding-bottom:1px;
+        }
+        body {
+            background-color: #FFFFF;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+<div class="jumbotron">
+    <h1 class="display-3">Welcome!</h1>
+    <p class="lead">We are conducting this user study to investigate and explore how a user's data sharing privacy
+        preference evolve over time.</p>
+    <hr>
+    <p>Thank you for agreeing to take part in our study.</p>
+
+</div>
+<div class="container">
+    <p><h2>You can login here</h2></p><hr>
+
+    <form method="post">
+        {% csrf_token %}
+        <table>
+
+        </table>
+        {% load bootstrap %}
+        {{ form | bootstrap_horizontal:'col-sm-9' }}
+
+        <button class="btn btn-outline-success" style="cursor:pointer;" type="submit">Login</button>
+         <a href="/accounts/register/" class="btn btn-outline-info" role="button" aria-pressed="true">Register</a></p>
+    </form>
+
+</div>
+{% endblock %}
