@@ -41,7 +41,7 @@
         {{ text }}<hr>
         <p>
         <b>Please indicate your preference</b>:<br>
-            {{ name }} would like to tag you on this post, and share it to <b>{{ setting }}</b> settings. Do you agreeb?</p>
+            {{ name }} would like to tag you on this post, and share it to <b>{{ setting }}</b> settings. Do you agree?</p>
     <form method="post">
         {% csrf_token %}
         <center><p><button id="PYes" type="submit" class="btn btn-success"
@@ -55,7 +55,6 @@
 <div class="container">
 {% if preference %}
     {% if 'Yes' in preference %}
-        <p>Yayy! We agree with your choice!</p>
         <script>
             $( document ).ready(function() {
                 $('#next').show()
@@ -63,7 +62,6 @@
         </script>
     {% elif 'No' in preference %}
 
-        <p>Nooooo!!! We don't agree with you in this case!</p>
         Would you like to change your privacy preference?<hr>
         <button id="Yes" type="button" class="btn btn-success" role="button" aria-pressed="true" name="choice" value="Yes">Yes</button>
         <button id="No" type="button" class="btn btn-danger" role="button" aria-pressed="true" name="choice" value="No">No</button>
