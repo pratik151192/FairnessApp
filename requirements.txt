@@ -40,7 +40,7 @@ pickleshare==0.7.4
 Pillow==4.3.0
 plotly==2.0.15
 prompt-toolkit==1.0.15
-psycopg2=2.7.3.2
+psycopg2==2.7.3.2
 pycares==2.3.0
 pycparser==2.18
 pygame==1.9.3
@@ -58,6 +58,7 @@ requests-oauthlib==0.8.0
 simplegeneric==0.8.1
 simplejson==3.11.1
 six==1.10.0
+sqlite3==3.21.0
 tqdm==4.15.0
 traitlets==4.3.2
 tweepy==3.5.0
