@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d565f83-c936-4844-a69f-fbaf2f642300" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/10.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/4.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/5.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/6.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/7.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/8.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/9.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/accounts/templates/accounts/pages.html" afterPath="$PROJECT_DIR$/accounts/templates/accounts/pages.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyApp/settings.py" afterPath="$PROJECT_DIR$/MyApp/settings.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -46,8 +36,8 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MyApp/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="129" column="0" lean-forward="true" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+            <state relative-caret-position="415">
+              <caret line="134" column="0" lean-forward="true" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -202,8 +192,8 @@
         <option value="$PROJECT_DIR$/MyApp/wsgi.py" />
         <option value="$PROJECT_DIR$/accounts/templates/base.html" />
         <option value="$PROJECT_DIR$/accounts/static/images/imageTexts.py" />
-        <option value="$PROJECT_DIR$/MyApp/settings.py" />
         <option value="$PROJECT_DIR$/accounts/templates/accounts/pages.html" />
+        <option value="$PROJECT_DIR$/MyApp/settings.py" />
       </list>
     </option>
   </component>
@@ -235,35 +225,6 @@
           <expand>
             <path>
               <item name="MyApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MyApp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MyApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MyApp" type="462c0819:PsiDirectoryNode" />
-              <item name="accounts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MyApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MyApp" type="462c0819:PsiDirectoryNode" />
-              <item name="accounts" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MyApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MyApp" type="462c0819:PsiDirectoryNode" />
-              <item name="accounts" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MyApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MyApp" type="462c0819:PsiDirectoryNode" />
-              <item name="accounts" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MyApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MyApp" type="462c0819:PsiDirectoryNode" />
               <item name="MyApp" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -477,7 +438,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32992035" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33333334" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33333334" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -921,8 +882,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MyApp/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="129" column="0" lean-forward="true" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+        <state relative-caret-position="415">
+          <caret line="134" column="0" lean-forward="true" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
           <folding />
         </state>
       </provider>
