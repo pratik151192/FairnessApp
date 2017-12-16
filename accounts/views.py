@@ -24,6 +24,11 @@ def pages(request):
         extensions = getExtensions()
         if request.POST:
             user = UserValues.objects.get(user=request.user)
+
+            if 'began' in request.POST:
+                user.firstLogin = False
+                user.save()
+
             if 'next' in request.POST:
                 request.session['image_id'] += 1
                 imageId = request.session['image_id']
@@ -33,9 +38,6 @@ def pages(request):
             if imageId % 2 == 1:
                 preference=""
                 change = ""
-                if 'began' in request.POST:
-                    user.firstLogin = False
-                    user.save()
 
                 if 'began' in request.POST or 'next' in request.POST or 'continue' in request.POST:
                     uservalues, current_robot = Game.getRobot(request, 1)
@@ -72,10 +74,6 @@ def pages(request):
                 return render(request, 'accounts/pages.html', args)
             else:
                 form = DocumentForm(request.POST or None)
-
-                if 'began' in request.POST:
-                    user.firstLogin = False
-                    user.save()
 
                 if 'began' in request.POST or 'next' in request.POST or 'continue' in request.POST:
                     current_robot, uservalues = Game.getRobot(request, 0)
