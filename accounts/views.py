@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from accounts.algorithms import Game
 from accounts.forms import RegistrationForm, DocumentForm
 from accounts.models import UserValues, Robots
-from accounts.static.images.imageTexts import getImageTexts, getNames, getSettings, getFlickrIds
+from accounts.static.images.imageTexts import getImageTexts, getNames, getSettings, getFlickrIds, getExtensions
 
 def register(request):
     form = RegistrationForm(request.POST or None)
@@ -21,6 +21,7 @@ def pages(request):
         names = getNames()
         imageTexts = getImageTexts()
         settings = getSettings()
+        extensions = getExtensions()
         if request.POST:
             user = UserValues.objects.get(user=request.user)
             if 'next' in request.POST:
@@ -50,10 +51,6 @@ def pages(request):
                     user_offeror_values = list(map(float, user.user_offeror_values.split()))
                     user_acceptor_values.append(user_acceptor_values[-1])
                     user_offeror_values.append(user_offeror_values[-1])
-                    '''if ('Yes' in request.POST.get('preference') and request.session['success'] == True) or ('No' in request.POST.get('preference') and request.session['failure'] == True):
-                        preference = 'Yes'
-                    elif ('No' in request.POST.get('preference') and request.session['success']) or ('Yes' in request.POST.get('preference') and request.session['failure']):
-                        preference = 'No'''''
                     user.user_acceptor_values = " ".join(map(str, user_acceptor_values))
                     user.user_offeror_values = " ".join(map(str, user_offeror_values))
                     user.save()
@@ -70,8 +67,8 @@ def pages(request):
                     user.user_offeror_values = " ".join(map(str, user_offeror_values))
                     user.save()
 
-                settings = getSettings()
-                imagePath = "images/" + str(imageId) + ".png"
+                imagePath = "images/" + str(imageId) + "." + extensions[imageId]
+                print(imagePath)
                 args = {'image_id':imageId, 'imagePath': imagePath, 'preference':preference,
                         'change':change, 'text':imageTexts[str(imageId)],
                         'name': names[int(imageId-1)], 'setting': settings[request.session['robot_offeror_value']]}
@@ -104,13 +101,13 @@ def pages(request):
                     try:
                         image_id = int(image_ids[segemented_link[5]])
                     except (KeyError, IndexError):
-                        errorMsg = "We're sorry! The link doesn't exist! Are you sure you copied it correct from the album we specified? Please retry!"
+                        errorMsg = "We're sorry! The link doesn't exist! Are you sure you copied it correct from the album AFTER opening the photo? Please retry!"
                         form = DocumentForm()
                         return render(request, 'accounts/model_form_upload.html', {
                             'form': form, 'error': errorMsg
                         })
                     offeror_val = list(map(float, uservalues.offeror_values.split()))[-1]
-                    imagePath = "images/" + str(imageId) + ".png"
+                    imagePath = "images/" + str(imageId) + "." + extensions[imageId]
                     return render(request, 'accounts/model_form_upload.html', {
                         'image_id': image_id, "imagePath": imagePath,
                         'form': form, 'setting': settings[offeror_val], 'name':names[int(request.session['image_id'])]

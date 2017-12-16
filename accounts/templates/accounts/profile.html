@@ -13,11 +13,11 @@
 <br><br>
 <div class="container">
     {% if image_id == 1 and firstLogin == True %}
-    <div class="alert alert-warning" role="alert">
-        <strong>Warning!</strong> Please reload the page if you're not seeing the image!
-    </div>
     <b><font size="6">Welcome, </font></b><font size="5">{{ username|title }}</font><hr>
         {% if not 'Yes' in questions %}
+        <div class="alert alert-warning" role="alert">
+            <strong>Warning!</strong> Please reload the page if you're not seeing the images!
+        </div>
             <div id="network">
             <p style="text-align:justify">You have agreed to take part in a user study. We will show you a series of photos.<br>
             After watching each photo, kindly respond if you'd like to share the photo to your network. <br>

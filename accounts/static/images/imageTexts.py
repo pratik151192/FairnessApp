@@ -12,7 +12,20 @@ texts = {
     "11": "Haha! People doing crazy stuff with their bikes!",
     "12": "The baby doesn't like Santa Claus :(",
 }
-
+extensions = {
+    1: "png",
+    2: "png",
+    3: "png",
+    4: "jpg",
+    5: "jpg",
+    6: "png",
+    7: "png",
+    8: "jpg",
+    9: "png",
+    10: "jpg",
+    11: "jpg",
+    12: "jpg"
+}
 image_ids_flickr = {
     "25164146788": 1,
     "38319188074": 2,
@@ -48,3 +61,6 @@ def getSettings():
 
 def getFlickrIds():
     return image_ids_flickr
+
+def getExtensions():
+    return extensions
