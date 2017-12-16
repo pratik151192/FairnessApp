@@ -64,12 +64,12 @@
         </script>
     {% elif 'No' in preference %}
 
-        Would you like to change your privacy preference?<hr>
+        Would you like to change the privacy setting?<hr>
         <button id="Yes" type="button" class="btn btn-success" role="button" aria-pressed="true" name="choice" value="Yes">Yes</button>
         <button id="No" type="button" class="btn btn-danger" role="button" aria-pressed="true" name="choice" value="No">No</button>
         <br><br>
         <div id="privacy">
-            <center><b>Please set your new privacy preference.</b><br><br>
+            <center><b>Please set your new privacy setting.</b><br><br>
             <form method="post" name="privacy">
                 {% csrf_token %}
                 <p>

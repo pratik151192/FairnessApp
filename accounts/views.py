@@ -68,7 +68,6 @@ def pages(request):
                     user.save()
 
                 imagePath = "images/" + str(imageId) + "." + extensions[imageId]
-                print(imagePath)
                 args = {'image_id':imageId, 'imagePath': imagePath, 'preference':preference,
                         'change':change, 'text':imageTexts[str(imageId)],
                         'name': names[int(imageId-1)], 'setting': settings[request.session['robot_offeror_value']]}
@@ -99,7 +98,7 @@ def pages(request):
                     segemented_link = link.split("/")
                     image_ids = getFlickrIds()
                     try:
-                        image_id = int(image_ids[segemented_link[5]])
+                        imageId = int(image_ids[segemented_link[5]])
                     except (KeyError, IndexError):
                         errorMsg = "We're sorry! The link doesn't exist! Are you sure you copied it correct from the album AFTER opening the photo? Please retry!"
                         form = DocumentForm()
@@ -109,7 +108,7 @@ def pages(request):
                     offeror_val = list(map(float, uservalues.offeror_values.split()))[-1]
                     imagePath = "images/" + str(imageId) + "." + extensions[imageId]
                     return render(request, 'accounts/model_form_upload.html', {
-                        'image_id': image_id, "imagePath": imagePath,
+                        'image_id': imageId, "imagePath": imagePath,
                         'form': form, 'setting': settings[offeror_val], 'name':names[int(request.session['image_id'])]
                     })
 
