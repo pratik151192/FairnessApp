@@ -103,7 +103,7 @@ def pages(request):
                     imagePath = "images/" + str(imageId) + "." + extensions[imageId]
                     return render(request, 'accounts/model_form_upload.html', {
                         'image_id': imageId, "imagePath": imagePath,
-                        'form': form, 'setting': settings[offeror_val], 'name':names[int(request.session['image_id'])]
+                        'form': form, 'setting': settings[offeror_val], 'name':names[int(request.session['image_id'])-1]
                     })
 
                 if "shared" in request.POST:
