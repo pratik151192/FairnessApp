@@ -59,12 +59,9 @@ def pages(request):
                 if 'change' in request.POST:
                     change = 'Yes'
                     user_acceptor_values = list(map(float, user.user_acceptor_values.split()))
-                    user_offeror_values = list(map(float, user.user_offeror_values.split()))
                     del user_acceptor_values[-1]
                     user_acceptor_values.append(float(request.POST.get('change')))
-                    user_offeror_values.append(float(user_offeror_values[-1]))
                     user.user_acceptor_values = " ".join(map(str, user_acceptor_values))
-                    user.user_offeror_values = " ".join(map(str, user_offeror_values))
                     user.save()
 
                 imagePath = "images/" + str(imageId) + "." + extensions[imageId]
@@ -77,7 +74,6 @@ def pages(request):
                 form = DocumentForm(request.POST or None)
 
                 if 'began' in request.POST:
-                    user = UserValues.objects.get(user=request.user)
                     user.firstLogin = False
                     user.save()
 
@@ -135,12 +131,9 @@ def pages(request):
                 if 'change' in request.POST:
                     change = 'Yes'
                     user = UserValues.objects.get(user=request.user)
-                    user_acceptor_values = list(map(float, user.user_acceptor_values.split()))
                     user_offeror_values = list(map(float, user.user_offeror_values.split()))
                     del user_offeror_values[-1]
-                    user_acceptor_values.append(user_acceptor_values[-1])
                     user_offeror_values.append(float(request.POST.get('change')))
-                    user.user_acceptor_values = " ".join(map(str, user_acceptor_values))
                     user.user_offeror_values = " ".join(map(str, user_offeror_values))
                     user.save()
                     return render(request, 'accounts/model_form_upload.html', {
