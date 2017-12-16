@@ -7,52 +7,96 @@
             cursor:pointer;
         }
     </style>
-
 {% endblock %}
 
 {% block body %}
 <br><br>
 <div class="container">
     {% if image_id == 1 and firstLogin == True %}
+    <div class="alert alert-warning" role="alert">
+        <strong>Warning!</strong> Please reload the page if you're not seeing the image!
+    </div>
     <b><font size="6">Welcome, </font></b><font size="5">{{ username|title }}</font><hr>
-    <p style="text-align:justify">You have agreed to take part in a user study. We will show you a series of photos.<br>
-    After watching each photo, kindly respond if you'd like to share the photo to your network. <br>
-        <br>Before beginning your study, please answer the below questions:
-        {% if not 'Yes' in offeror %}
-            <form method="post" name="offeror">
-                {% csrf_token %}
-                <div id="offeror">
-                <p>    <b>In general, who can see posts you're tagged in on your network?</b></p>
-                <p>
-                    <button class="btn btn-outline-danger" role="button" name="offeror" aria-pressed="true" value="0">Private/Only me</button>
-                    <button class="btn btn-outline-warning" role="button" name="offeror" aria-pressed="true" value="0.25">Friends</button>
-                    <button class="btn btn-outline-info" role="button" name="offeror" aria-pressed="true" value="0.5">Friends of Friends</button>
-                    <button class="btn btn-outline-success" role="button" name="offeror" aria-pressed="true" value="0.75">Friends of Friends of Friends</button>
-                    <button class="btn btn-outline-primary" role="button" name="offeror" aria-pressed="true" value="1">Public</button>
-                </p>
-                </div>
-            </form>
-        {% elif not 'Yes' in acceptor %}
-            <form method="post" name="acceptor">
-                {% csrf_token %}
-                <div id="acceptor">
-                    <p><b>In general, when you're tagged in a post, who do you want to add to the audience of the post if they can't already see it?</b></p>
-                <p>
-                    <button class="btn btn-outline-danger" type="submit" role="button" name="acceptor" aria-pressed="true" value="0">Private/Only me</button>
-                    <button class="btn btn-outline-warning" type="submit" role="button" name="acceptor" aria-pressed="true" value="0.25">Friends</button>
-                    <button class="btn btn-outline-info" type="submit" role="button" name="acceptor" aria-pressed="true" value="0.5">Friends of Friends</button>
-                    <button class="btn btn-outline-success" type="submit" role="button" name="acceptor" aria-pressed="true" value="0.75">Friends of Friends of Friends</button>
-                    <button class="btn btn-outline-primary" type="submit" role="button" name="acceptor" aria-pressed="true" value="1">Public</button>
-                </p>
-                </div>
-            </form>
+        {% if not 'Yes' in questions %}
+            <div id="network">
+            <p style="text-align:justify">You have agreed to take part in a user study. We will show you a series of photos.<br>
+            After watching each photo, kindly respond if you'd like to share the photo to your network. <br>
 
-        {% elif 'Yes' in offeror and 'Yes' in acceptor %}
-        <p><b>Now you may begin your study</b></p>
-            <form method="POST" action="/accounts/pages/">
-                {% csrf_token %}
-                <button class="btn btn-info"
-                        role="button" aria-pressed="true" name="began" type="submit">Begin Study</button></form>
+                <b><p>But first, let's meet your network!!</p>
+                <center>Say hello to your colleagues at work!<br><br>
+                    <div height="200" width="200">
+                        {% load static %}
+                        <img src="{% static 'images/colleagues.jpg' %}" alt="My image" height="100%" width="500" />
+                    </div>
+                <br><p>Meet your friend circle!</p>
+                    <div height="200" width="200">
+                        {% load static %}
+                        <img src="{% static 'images/large_friends.jpg' %}" alt="My image" height="100%" width="500" />
+                    </div>
+                <br><p>{{ username|title }}, these are your best friends! Wow, you are lucky!</p>
+                    <div height="200" width="200">
+                        {% load static %}
+                        <img src="{% static 'images/best_friends.jpg' %}" alt="My image" height="100%" width="500" />
+                    </div>
+                <br><p>Time to greet your family!</p>
+                    <div height="200" width="200">
+                    {% load static %}
+                    <img src="{% static 'images/family.jpg' %}" alt="My image" height="100%" width="500" />
+                    </div>
+                <br><p>Now have a look at your entire network!</p>
+                    <div height="200" width="200">
+                    <{% load static %}
+                     <img src="{% static 'images/network.jpg' %}" alt="My image" height="100%" width="500" />
+                    </div>
+                    </b></center>
+            <p><br>Alright! We're all set.</p>
+                <form method="post" name="showQuestions">
+                    {% csrf_token %}
+                    <button class="btn btn-info"
+                            role="button" aria-pressed="true" type="submit" name="showQuestions">Continue</button><br><br>
+                </form>
+            </div>
+        {% else %}
+            <div id="questions">
+                {% if not 'Yes' in offeror %}
+                    Before we begin our study, please answer the below questions:<br><br>
+                    <form method="post" name="offeror">
+                        {% csrf_token %}
+                        <div id="offeror">
+                        <p>    <b>In general, who can see posts you're tagged in on your network?</b></p>
+                        <p>
+                            <button class="btn btn-outline-danger" role="button" name="offeror" aria-pressed="true" value="0">Private/Only me</button>
+                            <button class="btn btn-outline-warning" role="button" name="offeror" aria-pressed="true" value="0.25">Friends</button>
+                            <button class="btn btn-outline-info" role="button" name="offeror" aria-pressed="true" value="0.5">Friends of Friends</button>
+                            <button class="btn btn-outline-success" role="button" name="offeror" aria-pressed="true" value="0.75">Friends of Friends of Friends</button>
+                            <button class="btn btn-outline-primary" role="button" name="offeror" aria-pressed="true" value="1">Public</button>
+                        </p>
+                        </div>
+                    </form>
+                {% elif not 'Yes' in acceptor %}
+                    Before we begin our study, please answer the below questions:<br><br>
+                    <form method="post" name="acceptor">
+                        {% csrf_token %}
+                        <div id="acceptor">
+                            <p><b>In general, when you're tagged in a post, who do you want to add to the audience of the post if they can't already see it?</b></p>
+                        <p>
+                            <button class="btn btn-outline-danger" type="submit" role="button" name="acceptor" aria-pressed="true" value="0">Private/Only me</button>
+                            <button class="btn btn-outline-warning" type="submit" role="button" name="acceptor" aria-pressed="true" value="0.25">Friends</button>
+                            <button class="btn btn-outline-info" type="submit" role="button" name="acceptor" aria-pressed="true" value="0.5">Friends of Friends</button>
+                            <button class="btn btn-outline-success" type="submit" role="button" name="acceptor" aria-pressed="true" value="0.75">Friends of Friends of Friends</button>
+                            <button class="btn btn-outline-primary" type="submit" role="button" name="acceptor" aria-pressed="true" value="1">Public</button>
+                        </p>
+                        </div>
+                    </form>
+
+                {% elif 'Yes' in offeror and 'Yes' in acceptor %}
+                <p>Now you may begin your study</p>
+                    <form method="POST" action="/accounts/{{ toggle }}/">
+                        {% csrf_token %}
+                        <button class="btn btn-info"
+                                role="button" aria-pressed="true" name="began" type="submit">Begin Study</button></form>
+                </div>
+                {% endif %}
         </div>
         {% endif %}
     {% endif %}
@@ -60,12 +104,13 @@
     {% if image_id > 1 or firstLogin == False %}
     <b><font size="6">Welcome, </font></b><font size="5">{{ username|title }}</font><hr>
     <p>You have already started your study. Please continue </p>
-    <form method="POST" action="/accounts/pages/">
+    <form method="POST" action="/accounts/{{ toggle }}/">
         {% csrf_token %}
         <button class="btn btn-info"
                 role="button" aria-pressed="true" name="continue" type="submit">Continue Study</button>
     </form>
 
     {% endif %}
+
 </div>
 {% endblock %}

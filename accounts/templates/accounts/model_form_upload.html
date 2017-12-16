@@ -1,11 +1,100 @@
 {% extends 'base.html' %}
-
+{% block head %}
+<title>Content</title>
+````<style>
+        button {
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        $( document ).ready(function() {
+            $('#privacy').hide()
+            $('#next').hide()
+            $('#Yes').click(function() {
+                $('#next').hide()
+                $('#privacy').show()
+            });
+            $('#No').click(function() {
+                $('#privacy').hide()
+                $('#next').show();
+            });
+         });
+    </script>
+{% endblock %}
 {% block body %}
-<form method="post" enctype="multipart/form-data">
+<br><br><br>
+<div class="container">
+{% if form %}
+    {% if error %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endif %}
+    <p>Suppose you want to share a photo with <b>{{ name }}</b> in <b>{{ setting }}</b> setting. Please select a photo from the Flickr album and copy the link below after opening the photo.</p>
+    <p><a target="_blank" href="https://www.flickr.com/photos/138888936@N02/albums/72157688331222302/with/38319188074/" class="btn btn-info" role="button" aria-pressed="true">Go to album</a></p>
+    <p>Please note that we need you to post the URL or link of the photo; which will appear on the address bar (where you enter the website name) <b>after</b> you've opened the photo by clicking on it.</p>
+    <p><form method="post" name="photo">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-info" type="submit" role="button" name="change" aria-pressed="true">Upload</button>
+    </form></p>
+{% endif %}
+{% if image_id %}
+    <div height="200" width="200">
+        {% load static %}
+        <center><img src="{% static imagePath %}" alt="My image" height="100%" width="500" /></center>
+    </div><br>
+    <p>Would you like to share this photo with <b>{{ name }}</b> in <b>{{ setting }}</b> setting?</p>
+    <p><form method="post" name="share">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Upload</button>
+    <button class="btn btn-info" type="submit" role="button" name="shared" aria-pressed="true">Share</button>
+    </form></p>
+{% endif %}
+{% if result %}
+    {% if 'pass' in result %}
+            <form method="post">
+                {% csrf_token %}
+                <b>Let's continue with the study!</b>
+                <button type="submit" class="btn btn-info"
+                        role="button" aria-pressed="true" name="next" value="Next">Next</button>
+            </form>
+    {% elif 'fail' in result %}
+        <p>Woops! {{ name }} declined your request for tagging!</p>
+        <p>Would you like to change your privacy preference?</p><hr>
+        <button id="Yes" type="button" class="btn btn-success" role="button" aria-pressed="true" name="choice" value="Yes">Yes</button>
+        <button id="No" type="button" class="btn btn-danger" role="button" aria-pressed="true" name="choice" value="No">No</button>
+        <br><br>
+        <div id="privacy">
+            <center><b>Please set your new privacy preference.</b><br><br>
+                <form method="post" name="privacy">
+                    {% csrf_token %}
+                    <p>
+                        <button class="btn btn-outline-danger" type="submit" role="button" name="change" aria-pressed="true" value="0">Private/Only me</button>
+                        <button class="btn btn-outline-warning" type="submit" role="button" name="change" aria-pressed="true" value="0.25">Friends</button>
+                        <button class="btn btn-outline-info" type="submit" role="button" name="change" aria-pressed="true" value="0.5">Friends of Friends</button>
+                        <button class="btn btn-outline-success" type="submit" role="button" name="change" aria-pressed="true" value="0.75">Friends of Friends of Friends</button>
+                        <button class="btn btn-outline-primary" type="submit" role="button" name="change" aria-pressed="true" value="1">Public</button>
+                    </p>
+                </form></center>
+        </div>
+        <div id="next">
+            <form method="post">
+                {% csrf_token %}
+                <b>Let's continue with the study!</b>
+                <button type="submit" class="btn btn-info"
+                        role="button" aria-pressed="true" name="next" value="Next">Next</button>
+            </form>
+        </div>
+    {% endif %}
+{% endif %}
+{% if 'Yes' in change %}
+<form method="post">
+    {% csrf_token %}
+    <b>Let's continue with the study!</b>
+    <button type="submit" class="btn btn-info"
+            role="button" aria-pressed="true" name="next" value="Next">Next</button>
 </form>
+{% endif %}
+</div>
 
-<p><a href="/accounts/">Return to home</a></p>
 {% endblock %}

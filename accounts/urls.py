@@ -9,5 +9,5 @@ urlpatterns = [
     url(r'^register/$', views.register, name="register"),
     url(r'^profile/$', views.profile, name="profile"),
     url(r'^pages/$', views.pages, name="pages"),
-    url(r'^upload/$', views.model_upload_form, name="upload")
+    url(r'^upload/$', views.pages, name="upload")
 ]

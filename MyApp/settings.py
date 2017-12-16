@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['floating-bastion-32116.herokuapp.com', 'localhost']
 INSTALLED_APPS = [
     'accounts',
     'bootstrapform',
+    'storages',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -119,18 +120,33 @@ USE_L10N = True
 
 USE_TZ = True
 
+AWS_STORAGE_BUCKET_NAME = 'fairnessapp'
+AWS_S3_REGION_NAME = 'us-east-2'  # e.g. us-east-2
+AWS_ACCESS_KEY_ID = 'AKIAIY4372GZ3R2EJYLA'
+AWS_SECRET_ACCESS_KEY = '5vZa7MsvBGvdkmNI+3EHsG89UNGiR71H97AMkExw'
 
+# Tell django-storages the domain to use to refer to static files.
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+# Tell the staticfiles app to use S3Boto3 storage when writing the collected static files (when
+# you run `collectstatic`).
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_S3_REGION_NAME)
+STATIC_ROOT = "/"
+'''
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
-STATIC_URL = '/static/'
+#STATIC_URL = '/static/'
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'accounts/static/images'),
 )
-
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+'''
+

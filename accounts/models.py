@@ -62,9 +62,7 @@ class Robots(models.Model):
     image_id = models.IntegerField(default=1)
 
 class Document(models.Model):
-    desp = models.CharField(max_length=255, blank=True)
-    document = models.FileField(upload_to='files/')
-    uploaded_at = models.DateTimeField(auto_now_add=True)
+    link = models.CharField(max_length=150, default='')
 
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):

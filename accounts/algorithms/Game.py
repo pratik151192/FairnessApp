@@ -2,13 +2,17 @@ from accounts.models import UserValues, Robots
 import random
 import math
 
-def getRobot(request):
+def getRobot(request, toggle):
     user = request.user
     uservalues = UserValues.objects.get(user=user)
     robots = Robots.objects.filter(user=user)
     current_robot = random.choice(robots)
-    offeror = current_robot
-    acceptor = uservalues
+    if toggle == 1:
+        offeror = current_robot
+        acceptor = uservalues
+    elif toggle == 0:
+        offeror = uservalues
+        acceptor = current_robot
     offeror_values = list(map(float, offeror.offeror_values.split()))
     acceptor_values = list(map(float, acceptor.acceptor_values.split()))
     sensitivity = 0.5
@@ -19,15 +23,19 @@ def getRobot(request):
     acceptor.save()
     return (acceptor, offeror)
 
-def imagePreference(request, current_robot):
+def imagePreference(request, current_robot, toggle):
     user = request.user
     uservalues = UserValues.objects.get(user=user)
     robots = Robots.objects.filter(user=user)
     request.session['success'] = False
     request.session['failure'] = False
     sensitivity =  0.5
-    offeror = current_robot
-    acceptor = uservalues
+    if toggle == 1:
+        offeror = current_robot
+        acceptor = uservalues
+    elif toggle == 0:
+        offeror = uservalues
+        acceptor = current_robot
     acceptor.acceptor_count += 1
     offeror.offeror_count += 1
 

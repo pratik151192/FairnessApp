@@ -27,6 +27,11 @@ class RegistrationForm(UserCreationForm):
         return user
 
 class DocumentForm(forms.ModelForm):
+    link = forms.TextInput()
+    def __init__(self, *args, **kwargs):
+        super(DocumentForm, self).__init__(*args, **kwargs)
+        self.fields['link'].widget.attrs['size'] = 100
+
     class Meta:
-        model = Document
-        fields = ('desp','document', )
+            model = Document
+            fields = ['link',]
