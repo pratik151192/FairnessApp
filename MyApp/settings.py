@@ -120,7 +120,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-AWS_STORAGE_BUCKET_NAME = 'fairnessapp'
+'''AWS_STORAGE_BUCKET_NAME = 'fairnessapp'
 AWS_S3_REGION_NAME = 'us-east-2'  # e.g. us-east-2
 AWS_ACCESS_KEY_ID = 'AKIAIY4372GZ3R2EJYLA'
 AWS_SECRET_ACCESS_KEY = '5vZa7MsvBGvdkmNI+3EHsG89UNGiR71H97AMkExw'
@@ -147,6 +147,4 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'accounts/static/images'),
 )
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
-'''
 
