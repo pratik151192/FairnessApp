@@ -120,10 +120,10 @@ USE_L10N = True
 
 USE_TZ = True
 
-'''AWS_STORAGE_BUCKET_NAME = 'fairnessapp'
-AWS_S3_REGION_NAME = 'us-east-2'  # e.g. us-east-2
-AWS_ACCESS_KEY_ID = 'AKIAIY4372GZ3R2EJYLA'
-AWS_SECRET_ACCESS_KEY = '5vZa7MsvBGvdkmNI+3EHsG89UNGiR71H97AMkExw'
+'''AWS_STORAGE_BUCKET_NAME = ''
+AWS_S3_REGION_NAME = ''  # e.g. us-east-2
+AWS_ACCESS_KEY_ID = ''
+AWS_SECRET_ACCESS_KEY = ''
 
 # Tell django-storages the domain to use to refer to static files.
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
