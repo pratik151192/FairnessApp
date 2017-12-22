@@ -40,10 +40,10 @@
     </div>
 
     <div class="container">
-        {{ text }}<hr>
+        <p><center><i>{{ text }}</i></center></p><hr>
         <p>
         <b>Please indicate your preference</b>:<br>
-            <b>{{ name }}</b> would like to tag you on this post, and share it to <b>{{ setting }}</b> settings. Do you agree?</p>
+            <b>{{ name }}</b> (one of your {{ role }}) would like to tag you on this post, and share it with <b>{{ setting }}</b>. Do you agree?</p>
     <form method="post">
         {% csrf_token %}
         <center><p><button id="PYes" type="submit" class="btn btn-success"

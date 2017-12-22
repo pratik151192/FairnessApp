@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from accounts.algorithms import Game
 from accounts.forms import RegistrationForm, DocumentForm
 from accounts.models import UserValues, Robots
-from accounts.static.images.imageTexts import getImageTexts, getNames, getSettings, getFlickrIds, getExtensions
+from accounts.static.images.imageTexts import getImageTexts, getNames, getSettings, getFlickrIds, getExtensions, getRole
 
 def register(request):
     form = RegistrationForm(request.POST or None)
@@ -32,8 +32,11 @@ def pages(request):
             if 'next' in request.POST:
                 request.session['image_id'] += 1
                 imageId = request.session['image_id']
-                if(imageId >= len(getImageTexts())):
-                    return render(request, 'accounts/finished.html', {'imageId':imageId})
+                no_images = user.offeror_count + user.acceptor_count
+                failure_count = user.user_offeror_failure + user.user_acceptor_failure
+                if(imageId > len(getImageTexts())):
+                    return render(request, 'accounts/finished.html', {'imageId':imageId, 'no_images':no_images,
+                                                                      'failure_count': failure_count},)
 
             if imageId % 2 == 1:
                 preference=""
@@ -49,6 +52,10 @@ def pages(request):
                     preference = request.POST.get('preference')
                     current_robot = Robots.objects.get(id=request.session['current_robot'])
                     (user, robot) = Game.imagePreference(request, current_robot, 1)
+                    if 'Yes' in preference:
+                        user.user_acceptor_success += 1
+                    else:
+                        user.user_acceptor_failure += 1
                     user_acceptor_values = list(map(float, user.user_acceptor_values.split()))
                     user_offeror_values = list(map(float, user.user_offeror_values.split()))
                     user_acceptor_values.append(user_acceptor_values[-1])
@@ -68,7 +75,7 @@ def pages(request):
 
                 imagePath = "images/" + str(imageId) + "." + extensions[imageId]
                 args = {'image_id':imageId, 'imagePath': imagePath, 'preference':preference,
-                        'change':change, 'text':imageTexts[str(imageId)],
+                        'change':change, 'text':imageTexts[str(imageId)], 'role': getRole(imageId),
                         'name': names[int(imageId-1)], 'setting': settings[request.session['robot_offeror_value']]}
 
                 return render(request, 'accounts/pages.html', args)
@@ -83,7 +90,7 @@ def pages(request):
                     uservalues.save()
                     current_robot.save()
                     return render(request, 'accounts/model_form_upload.html', {
-                        'form': form, 'setting': settings[offeror_val], 'name':names[int(request.session['image_id'])],
+                        'form': form,
                     })
 
                 if "link" in request.POST:
@@ -102,7 +109,7 @@ def pages(request):
                     offeror_val = list(map(float, uservalues.offeror_values.split()))[-1]
                     imagePath = "images/" + str(imageId) + "." + extensions[imageId]
                     return render(request, 'accounts/model_form_upload.html', {
-                        'image_id': imageId, "imagePath": imagePath,
+                        'image_id': imageId, "imagePath": imagePath, "role": getRole(imageId),
                         'form': form, 'setting': settings[offeror_val], 'name':names[int(request.session['image_id'])-1]
                     })
 
@@ -115,15 +122,17 @@ def pages(request):
                     user_offeror_values.append(user_offeror_values[-1])
                     user.user_acceptor_values = " ".join(map(str, user_acceptor_values))
                     user.user_offeror_values = " ".join(map(str, user_offeror_values))
-                    user.save()
-                    robot.save()
                     result = ""
                     if request.session['success'] == True:
+                        user.user_offeror_success += 1
                         result = "pass"
                     elif request.session['failure'] == True:
+                        user.user_offeror_failure += 1
                         result = "fail"
+                    user.save()
+                    robot.save()
                     return render(request, 'accounts/model_form_upload.html', {
-                        'result': result, 'name':names[int(request.session['image_id'])]
+                        'result': result, 'name':names[int(request.session['image_id'])-1]
                     })
 
                 if 'change' in request.POST:
@@ -139,9 +148,16 @@ def pages(request):
                     })
         else:
             settings = getSettings()
+
+            if(imageId > len(getImageTexts())):
+                user = UserValues.objects.get(user=request.user)
+                no_images = user.offeror_count + user.acceptor_count
+                failure_count = user.user_offeror_failure + user.user_acceptor_failure
+                return render(request, 'accounts/finished.html', {'imageId':imageId, 'no_images':no_images,
+                                                                  'failure_count': failure_count},)
             if imageId % 2 == 1:
                 imagePath = "images/" + str(imageId) + ".png"
-                args = {'image_id':imageId, 'imagePath':imagePath, 'text':getImageTexts()[str(imageId)],
+                args = {'image_id':imageId, 'imagePath':imagePath, 'text':getImageTexts()[str(imageId)], 'role': getRole(imageId),
                         'name': names[int(imageId-1)], 'setting': settings[request.session['robot_offeror_value']]}
                 return render(request, 'accounts/pages.html', args)
             else:
@@ -165,8 +181,11 @@ def profile(request):
             request.session['image_id'] = uservalues.image_id
         imageId = request.session['image_id']
 
-        if(imageId >= len(getImageTexts())):
-            return render(request, 'accounts/finished.html', {'imageId':imageId})
+        if(imageId > len(getImageTexts())):
+            no_images = uservalues.offeror_count + uservalues.acceptor_count
+            failure_count = uservalues.user_offeror_failure + uservalues.user_acceptor_failure
+            return render(request, 'accounts/finished.html', {'imageId':imageId, 'no_images':no_images,
+                                                              'failure_count': failure_count},)
 
         args = {'username': request.user.username, 'user':uservalues,
                 'image_id':uservalues.image_id, 'firstLogin':uservalues.firstLogin,

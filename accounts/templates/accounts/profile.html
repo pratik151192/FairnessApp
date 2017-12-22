@@ -90,6 +90,10 @@
                     </form>
 
                 {% elif 'Yes' in offeror and 'Yes' in acceptor %}
+                <div class="alert alert-warning" role="alert">
+                    <strong>Warning!</strong> Please do not press the Back button during the course of the study. If you wish to continue at a later point,
+                    you may logout and log back in at anytime to continue the study. Pressing the back button may lead to corruption of data.
+                </div>
                 <p>Now you may begin your study</p>
                     <form method="POST" action="/accounts/{{ toggle }}/">
                         {% csrf_token %}
@@ -103,6 +107,10 @@
 
     {% if image_id > 1 or firstLogin == False %}
     <b><font size="6">Welcome, </font></b><font size="5">{{ username|title }}</font><hr>
+    <div class="alert alert-warning" role="alert">
+        <strong>Warning!</strong> Please do not press the Back button during the course of the study. If you wish to continue at a later point,
+        you may logout and log back in at anytime to continue the study. Pressing the back button may lead to corruption of data.
+    </div>
     <p>You have already started your study. Please continue </p>
     <form method="POST" action="/accounts/{{ toggle }}/">
         {% csrf_token %}

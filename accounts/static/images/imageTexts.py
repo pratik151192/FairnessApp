@@ -64,3 +64,8 @@ def getFlickrIds():
 
 def getExtensions():
     return extensions
+
+def getRole(imageId):
+    if imageId % 3 == 1: return "Friends"
+    elif imageId %3 == 2: return "Best Friends"
+    else: return "Family members"

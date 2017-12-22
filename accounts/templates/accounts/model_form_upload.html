@@ -33,7 +33,7 @@
             <strong>{{ error|escape }}</strong>
         </div>
     {% endif %}
-    <p>Suppose you want to share a photo with <b>{{ name }}</b> in <b>{{ setting }}</b> setting. Please select a photo from the Flickr album and copy the link below after opening the photo.</p>
+    Please select a photo from the Flickr album and copy the link below after opening the photo.</p>
     <p><a target="_blank" href="https://www.flickr.com/photos/138888936@N02/albums/72157688331222302/with/38319188074/" class="btn btn-info" role="button" aria-pressed="true">Go to album</a></p>
     <p>Please note that we need you to post the URL or link of the photo; which will appear on the address bar (where you enter the website name) <b>after</b> you've opened the photo by clicking on it.</p>
     <p><form method="post" name="photo">
@@ -43,18 +43,25 @@
     </form></p>
 {% endif %}
 {% if image_id %}
+    <p>You are tagged in this photo with <b>{{ name }}</b> (one of your {{ role }}).</p>
+    <p>According to what you set for your privacy setting, this image will be shared with <b>{{ setting }}</b>.
     <div height="200" width="200">
         {% load static %}
         <center><img src="{% static imagePath %}" alt="My image" height="100%" width="500" /></center>
     </div><br>
-    <p>Would you like to share this photo with <b>{{ name }}</b> in <b>{{ setting }}</b> setting?</p>
+    <p>Would you like to share this photo?</p>
+
+    <p>If you do not wish to share this photo, please reupload another photo using a link in the same album
+        and paste it above in the "<b>Link:</b>" field.</p>
     <p><form method="post" name="share">
     {% csrf_token %}
     <button class="btn btn-info" type="submit" role="button" name="shared" aria-pressed="true">Share</button>
+
     </form></p>
 {% endif %}
 {% if result %}
     {% if 'pass' in result %}
+    <p>Yayy! <b>{{ name }}</b> accepted your request for tagging!</p>
             <form method="post">
                 {% csrf_token %}
                 <b>Let's continue with the study!</b>
@@ -62,7 +69,7 @@
                         role="button" aria-pressed="true" name="next" value="Next">Next</button>
             </form>
     {% elif 'fail' in result %}
-        <p>Woops! {{ name }} declined your request for tagging!</p>
+    <p>Woops! <b>{{ name }}</b> declined your request for tagging!</p>
         <p>Would you like to change the privacy setting?</p><hr>
         <button id="Yes" type="button" class="btn btn-success" role="button" aria-pressed="true" name="choice" value="Yes">Yes</button>
         <button id="No" type="button" class="btn btn-danger" role="button" aria-pressed="true" name="choice" value="No">No</button>
