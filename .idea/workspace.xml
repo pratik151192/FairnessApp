@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d565f83-c936-4844-a69f-fbaf2f642300" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/accounts/models.py" afterPath="$PROJECT_DIR$/accounts/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/accounts/views.py" afterPath="$PROJECT_DIR$/accounts/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,8 +26,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/accounts/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1075">
-              <caret line="155" column="104" lean-forward="false" selection-start-line="155" selection-start-column="104" selection-end-line="155" selection-end-column="104" />
+            <state relative-caret-position="-500">
+              <caret line="190" column="85" lean-forward="false" selection-start-line="190" selection-start-column="85" selection-end-line="190" selection-end-column="85" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -540,7 +539,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/accounts/views.py</url>
-          <line>238</line>
+          <line>239</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -931,8 +930,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/accounts/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1075">
-          <caret line="155" column="104" lean-forward="false" selection-start-line="155" selection-start-column="104" selection-end-line="155" selection-end-column="104" />
+        <state relative-caret-position="-500">
+          <caret line="190" column="85" lean-forward="false" selection-start-line="190" selection-start-column="85" selection-end-line="190" selection-end-column="85" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>

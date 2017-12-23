@@ -188,6 +188,7 @@ def profile(request):
             request.session['image_id'] = uservalues.image_id
         imageId = request.session['image_id']
 
+        '''there will be total 12 iterations; finish the study when image id exceeds.'''
         if(imageId > len(getImageTexts())):
             no_images = uservalues.offeror_count + uservalues.acceptor_count
             failure_count = uservalues.user_offeror_failure + uservalues.user_acceptor_failure
