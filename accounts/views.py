@@ -6,6 +6,7 @@ from accounts.forms import RegistrationForm, DocumentForm
 from accounts.models import UserValues, Robots
 from accounts.static.images.imageTexts import getImageTexts, getNames, getSettings, getFlickrIds, getExtensions, getRole
 
+'''registration of account; mostly handled by Django'''
 def register(request):
     form = RegistrationForm(request.POST or None)
     if request.method == "POST":
@@ -15,6 +16,8 @@ def register(request):
     args = {'form':form}
     return render(request, 'accounts/reg_form.html', args)
 
+'''the survey page; contains logic for user both in the offeror and acceptor case.
+the cases appear alternate identified by image id modulo 2.'''
 def pages(request):
     if request.user.is_authenticated:
         imageId = request.session['image_id']
@@ -38,6 +41,7 @@ def pages(request):
                     return render(request, 'accounts/finished.html', {'imageId':imageId, 'no_images':no_images,
                                                                       'failure_count': failure_count},)
 
+            '''if image id is odd, user is an acceptor'''
             if imageId % 2 == 1:
                 preference=""
                 change = ""
@@ -80,6 +84,8 @@ def pages(request):
 
                 return render(request, 'accounts/pages.html', args)
             else:
+                '''if image id is even, user is an offeror'''
+
                 form = DocumentForm(request.POST or None)
 
                 if 'began' in request.POST or 'next' in request.POST or 'continue' in request.POST:
@@ -147,6 +153,7 @@ def pages(request):
                         'change': change,
                     })
         else:
+            '''this part is to control the state of the page in case the user presses the refresh button'''
             settings = getSettings()
 
             if(imageId > len(getImageTexts())):

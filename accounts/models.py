@@ -5,12 +5,15 @@ from django.dispatch import receiver
 from accounts.algorithms import getValues
 
 # Create your models here.
+
+'''basic profile model for a user'''
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     username = models.CharField(max_length=150, default='')
     firstName = models.CharField(max_length=20, default='')
     lastName = models.CharField(max_length=20, default='')
 
+'''the parameters and final values we need for each user '''
 class UserValues(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     firstLogin = models.BooleanField(default=True)
@@ -42,6 +45,7 @@ class UserValues(models.Model):
     image_id = models.IntegerField(default=1)
     last_robot_value = models.FloatField(default=0)
 
+'''the robots/bots who will play with the users'''
 class Robots(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     comfort = models.FloatField(default=0.0)
@@ -65,6 +69,7 @@ class Robots(models.Model):
     offeror_negative_loss_count = models.IntegerField(default=0)
     image_id = models.IntegerField(default=1)
 
+'''offeror upload image model'''
 class Document(models.Model):
     link = models.CharField(max_length=150, default='')
 
