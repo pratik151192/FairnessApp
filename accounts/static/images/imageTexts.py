@@ -1,3 +1,7 @@
+'''all static informtion related to rendered images and privacy settings
+reside here and are returned through respective utility functions...this Python
+file shouldn't ideally exist here; but it contextually makes more sense'''
+
 texts = {
     "1": "A doctor is inspecting a pregnant lady!",
     "2": "Funeral of a friend!",

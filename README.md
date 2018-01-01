@@ -3,8 +3,11 @@
 Created a web-based social network between humans and bots where the users are asked to 
 provide preferences whether they want to tag or be tagged in a specific post. The model in the background uses Game Theory 
 techniques to evaluate the fairness of the system, and to observe whether users compromise towards a neutral privacy setting
-after rounds of repeated negotiations in their network. 
+after rounds of repeated negotiations in their network.
 
 Want to play?
 
 https://floating-bastion-32116.herokuapp.com/
+
+Note: The logic behind the users compromising or negotiating in the network is published here:
+

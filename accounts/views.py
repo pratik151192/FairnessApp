@@ -1,3 +1,11 @@
+'''the views are kinda modularized and I've tried to avoid unconventional practices.
+Being the sole developer of this project, and a timeline of 55 days, this is the best I could
+do with respect to applying design patterns. In future, I plan to adhere to SRP and modularize this better'''
+
+'''Note that while rendering HTML, a combination of Jinja 2 and jQuery is used. This can be confusing for the
+browsers and bugs can appear if not done properly. I suggest using one WAY for one component 
+of your application and not mixing them up'''
+
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, HttpResponse

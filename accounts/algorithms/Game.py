@@ -1,7 +1,11 @@
+'''the logic behind the computations in this module is published in our work
+Please refer ... for more information'''
+
 from accounts.models import UserValues, Robots
 import random
 import math
 
+'''utility function to randomly select a robot/bot for the incoming user from his assigned 10 bots'''
 def getRobot(request, toggle):
     user = request.user
     uservalues = UserValues.objects.get(user=user)
@@ -23,6 +27,9 @@ def getRobot(request, toggle):
     acceptor.save()
     return (acceptor, offeror)
 
+'''umbrella function which assigns the offeror and acceptor to robot and user (or vice-versa) and 
+wraps and unwraps the offeror and accpetor values from and to the model after the model computation
+has been performed respectively.'''
 def imagePreference(request, current_robot, toggle):
     user = request.user
     uservalues = UserValues.objects.get(user=user)
@@ -54,6 +61,8 @@ def imagePreference(request, current_robot, toggle):
     acceptor.save()
     return (acceptor, offeror)
 
+'''this utility function checks the current content sensitivity against the incoming (previous) offeror and acceptor
+values of the respective users and rounds off to the nearest 0.25th value in [0,0.25,0.5,0.75,1]'''
 def updateValuesAndLosses(offeror, acceptor, offeror_values, acceptor_values, sensitivity):
 
     cur_offeror_val = offeror_values[-1]
@@ -105,6 +114,8 @@ def updateValuesAndLosses(offeror, acceptor, offeror_values, acceptor_values, se
                                             acceptor.acceptor_negative_loss_count)
     return (acceptor, offeror)
 
+'''an umbrella utility function which checks the difference of the offeror and acceptor value against
+sensitivity of the content and the strength between users and performs appropriate actions'''
 def checkConditionAndPerformActions(request, offeror, acceptor, offeror_values, acceptor_values, sensitivity,
                                     offeror_acceptor_values, acceptor_offeror_values, robots):
     window = 0.5
@@ -119,6 +130,7 @@ def checkConditionAndPerformActions(request, offeror, acceptor, offeror_values, 
         onFailure(request, acceptor, offeror, offeror_values, acceptor_values, offeror_acceptor_values, acceptor_offeror_values)
     updateOthers(acceptor, offeror, robots)
 
+'''at each iteration, only 2 users play, retaining values for other users'''
 def updateOthers(acceptor, offeror, robots):
     for robot in robots:
         if robot != offeror:
@@ -130,6 +142,7 @@ def updateOthers(acceptor, offeror, robots):
             robot.acceptor_values = " ".join(map(str, acceptor_values))
             robot.save()
 
+'''on successful negotiation, there's no compromise and users retain their previous values'''
 def onSuccess(request, acceptor, offeror, offeror_values, acceptor_values, offeror_acceptor_values, acceptor_offeror_values):
     offeror.offeror_success += 1
     acceptor.acceptor_success += 1

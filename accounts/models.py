@@ -73,6 +73,8 @@ class Robots(models.Model):
 class Document(models.Model):
     link = models.CharField(max_length=150, default='')
 
+'''as soon as a new user registers, a profile model, values model, and model for user's bots
+are immediately created'''
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
     if created:
