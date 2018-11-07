@@ -49,6 +49,19 @@ def pages(request):
                     return render(request, 'accounts/finished.html', {'imageId':imageId, 'no_images':no_images,
                                                                       'failure_count': failure_count},)
 
+            if 'offeror' in request.POST:
+                offeror_values = list(map(float, user.offeror_values.split()))
+                del offeror_values[-1]
+                offeror_values.append(float(request.POST.get('offeror')))
+                user.offeror_values = " ".join(map(str, offeror_values))
+                user.save()
+                offeror_val = list(map(float, user.offeror_values.split()))[-1]
+                imagePath = "images/" + str(imageId) + "." + extensions[imageId]
+                return render(request, 'accounts/model_form_upload.html', {
+                    'image_id': imageId, "imagePath": imagePath, "role": getRole(imageId),
+                    'setting': settings[offeror_val], 'name': names[int(request.session['image_id']) - 1]
+                })
+
             '''if image id is odd, user is an acceptor'''
             if imageId % 2 == 1:
                 preference=""
