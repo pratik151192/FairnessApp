@@ -25,7 +25,7 @@ SECRET_KEY = 'ti1!#5z9u$qyerws&u)28mp26$xb02jx!tizfgfc9-b5w)_m7j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','floating-bastion-32116.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1','floating-bastion-32116.herokuapp.com', 'localhost', 'fairness-two.herokuapp.com']
 
 
 # Application definition
