@@ -1,25 +1,12 @@
 {% extends 'base.html' %}
 {% block head %}
 <title>Content</title>
-````<style>
+<style>
         button {
             cursor: pointer;
         }
     </style>
-    <script>
-        $( document ).ready(function() {
-            $('#privacy').hide()
-            $('#next').hide()
-            $('#Yes').click(function() {
-                $('#next').hide()
-                $('#privacy').show()
-            });
-            $('#No').click(function() {
-                $('#privacy').hide()
-                $('#next').show();
-            });
-         });
-    </script>
+
 {% endblock %}
 {% block body %}
 <br><br><br>
@@ -149,5 +136,18 @@
       </div>
     </div>
   </div>
-
+<script>
+        $( document ).ready(function() {
+            $('#privacy').hide()
+            $('#next').hide()
+            $('#Yes').click(function() {
+                $('#next').hide()
+                $('#privacy').show()
+            });
+            $('#No').click(function() {
+                $('#privacy').hide()
+                $('#next').show();
+            });
+         });
+    </script>
 {% endblock %}

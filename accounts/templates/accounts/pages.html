@@ -7,20 +7,7 @@
             cursor: pointer;
         }
     </style>
-    <script>
-        $( document ).ready(function() {
-            $('#next').hide()
-            $('#privacy').hide()
-            $('#Yes').click(function() {
-                $('#next').hide()
-                $('#privacy').show()
-            });
-            $('#No').click(function() {
-                $('#privacy').hide()
-                $('#next').show();
-            });
-         });
-    </script>
+
 {% endblock %}
 
 {% block body %}
@@ -101,5 +88,18 @@
 </form>
 {% endif %}
 </div>
-
+<script>
+        $( document ).ready(function() {
+            $('#next').hide()
+            $('#privacy').hide()
+            $('#Yes').click(function() {
+                $('#next').hide()
+                $('#privacy').show()
+            });
+            $('#No').click(function() {
+                $('#privacy').hide()
+                $('#next').show();
+            });
+         });
+</script>
 {% endblock %}
