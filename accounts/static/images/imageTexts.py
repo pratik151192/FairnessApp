@@ -1,7 +1,3 @@
-'''all static informtion related to rendered images and privacy settings
-reside here and are returned through respective utility functions...this Python
-file shouldn't ideally exist here; but it contextually makes more sense'''
-
 texts = {
     "1": "A doctor is inspecting a pregnant lady!",
     "2": "Funeral of a friend!",
@@ -16,33 +12,20 @@ texts = {
     "11": "Haha! People doing crazy stuff with their bikes!",
     "12": "The baby doesn't like Santa Claus :(",
 }
-extensions = {
-    1: "png",
-    2: "png",
-    3: "png",
-    4: "jpg",
-    5: "jpg",
-    6: "png",
-    7: "png",
-    8: "jpg",
-    9: "png",
-    10: "png",
-    11: "jpg",
-    12: "jpg"
-}
+
 image_ids_flickr = {
-    "42796963350": 1,
-    "44557297732": 2,
-    "44557302262": 3,
-    "43697667145": 4,
-    "44557302662": 5,
-    "44557302622": 6,
-    "43697667285": 7,
-    "44607583261": 8,
-    "43697667735": 9,
-    "44557297492": 10,
-    "44607583011": 11,
-    "42796962380": 12,
+    "25164146788": 1,
+    "38319188074": 2,
+    "25164146488": 3,
+    "38998495742": 4,
+    "38998493212": 5,
+    "25164145568": 6,
+    "39034982171": 7,
+    "38998565232": 8,
+    "38149674545": 9,
+    "38149674475": 10,
+    "27258747489": 11,
+    "38149673205": 12,
 }
 
 names = ['Monica', 'Chandler', 'Joey', 'Phoebe', 'Rachel', 'Ross', 'Eric', 'Sloan', 'Vince', 'Ari', 'Shauna', 'Amanda']
@@ -65,11 +48,3 @@ def getSettings():
 
 def getFlickrIds():
     return image_ids_flickr
-
-def getExtensions():
-    return extensions
-
-def getRole(imageId):
-    if imageId % 3 == 1: return "Friends"
-    elif imageId %3 == 2: return "Best Friends"
-    else: return "Family members"
