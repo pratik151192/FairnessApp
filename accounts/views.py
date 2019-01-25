@@ -120,7 +120,7 @@ def pages(request):
                         'form': form,
                     })
 
-                if "link" in request.POST:
+              '''  if "link" in request.POST:'''
                     uservalues = UserValues.objects.get(user=request.user)
                     link = request.POST.get("link")
                     segemented_link = link.split("/")
