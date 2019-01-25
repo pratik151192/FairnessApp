@@ -34,7 +34,7 @@ Please select a photo from the Flickr album and copy the link below after openin
     <p><form method="post" name="photo"> 
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="btn btn-info" type="submit" role="button" name="change" aria-pressed="true">Upload</button>--!>
+        <button class="btn btn-info" type="submit" role="button" name="change" aria-pressed="true">Upload</button>
     </form></p>
 {% endif %}
 
@@ -64,7 +64,7 @@ Please select a photo from the Flickr album and copy the link below after openin
 {% endif %}
 {% if result %}
     {% if 'pass' in result %}
-    <p>Yayy! <b>{{ name }}</b> accepted your request for tagging!</p>
+    <p>Great! <b>{{ name }}</b> accepted your request for tagging!</p>
             <form method="post">
                 {% csrf_token %}
                 <b>Let's continue with the study!</b>
