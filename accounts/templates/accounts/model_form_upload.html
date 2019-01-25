@@ -38,7 +38,8 @@ Please select a photo from the Flickr album and copy the link below after openin
     </form></p>
 {% endif %}
 
-{% if image_id %}
+<!-- {% if image_id %} -->
+
     <p>You are tagged in this photo with <b>{{ name }}</b> (one of your {{ role }}).</p>
     <p>According to what you set for your privacy setting, this image will be shared with <b>{{ setting }}</b>.</p>
     <p>If you wish to select a different setting than the default,
@@ -61,7 +62,7 @@ Please select a photo from the Flickr album and copy the link below after openin
     <a href="{% url 'upload' %}" class="btn btn-info">ReUpload</a>
 
     </form></p>
-{% endif %}
+<!-- {% endif %} -->
 {% if result %}
     {% if 'pass' in result %}
     <p>Great! <b>{{ name }}</b> accepted your request for tagging!</p>
