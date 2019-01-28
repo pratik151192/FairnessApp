@@ -126,9 +126,9 @@ def pages(request):
                     segemented_link = link.split("/")
                     image_ids = getFlickrIds()
                 
-                   try:
+                try:
                         imageId = int(image_ids[segemented_link[5]])
-                   except (KeyError, IndexError):
+                except (KeyError, IndexError):
                         errorMsg = "We're sorry! The link doesn't exist! Are you sure you copied it  from the album AFTER opening the photo? Please retry!"
                         form = DocumentForm()
                         return render(request, 'accounts/model_form_upload.html', {
