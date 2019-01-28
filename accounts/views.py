@@ -137,7 +137,7 @@ def pages(request):
                 
                 offeror_val = list(map(float, uservalues.offeror_values.split()))[-1]
                 imagePath = "images/" + str(imageId) + "." + extensions[imageId]
-                    return render(request, 'accounts/model_form_upload.html', {
+                return render(request, 'accounts/model_form_upload.html', {
                         'image_id': imageId, "imagePath": imagePath, "role": getRole(imageId),
                         'form': form, 'setting': settings[offeror_val], 'name':names[int(request.session['image_id'])-1]
                     })
