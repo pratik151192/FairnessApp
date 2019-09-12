@@ -5,7 +5,7 @@ from django.dispatch import receiver
 from accounts.algorithms import getValues
 
 # Create your models here.
-
+#try to update
 '''basic profile model for a user'''
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
