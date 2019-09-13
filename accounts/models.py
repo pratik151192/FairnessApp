@@ -53,9 +53,9 @@ class Robots(models.Model):
     #stubbornness_choice=[(stubbornness_fix,'five1')]
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     #comfort = models.FloatField(default=0.0)
-    comfort = models.FloatField(choices=0.5)
+    comfort = 0.5
     #stubbornness = models.FloatField(default=0.0)
-    stubbornness = models.FloatField(choices=0.5)
+    stubbornness = 0.5
     neighbors = models.TextField(default='')
     offeror_values = models.TextField(default='')
     acceptor_values = models.TextField(default='')
