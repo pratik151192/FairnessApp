@@ -50,7 +50,7 @@ class Robots(models.Model):
     comfort_fix=0.5
     comfort_choice=[(comfort_fix,'five')]
     stubbornness_fix=0.5
-    stubbornness_choice=[(stubbornness_fix,0'five1')]
+    stubbornness_choice=[(stubbornness_fix,'five1')]
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     #comfort = models.FloatField(default=0.0)
     comfort = models.FloatField(choices=comfort_choice,default='five')
