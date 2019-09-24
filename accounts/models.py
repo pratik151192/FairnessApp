@@ -47,20 +47,20 @@ class UserValues(models.Model):
 
 '''the robots/bots who will play with the users'''
 class Robots(models.Model):
-    COMFORT_NEU=0.5
+    #COMFORT_NEU=0.5
     #COMFORT_MAX=1.0
     COMFORT_CHOICES=(
-        (COMFORT_NEU,0.5))
-    STUB_NEUR=0.5
+        (0.5,'Neu'))
+    #STUB_NEUR=0.5
     #STUB_MIN=0.0
     STUB_CHOICES=(
-        (STUB_NEUR,0.5))
+        (0.5,'Neur'))
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     #comfort = models.FloatField(default=0.0)
-    comfort = models.FloatField(choices=COMFORT_CHOICES)
+    comfort = models.FloatField(choices=COMFORT_CHOICES,default=0.5)
     
     #stubbornness = models.FloatField(default=0.0)
-    stubbornness = models.FloatField(choices=STUB_CHOICES)
+    stubbornness = models.FloatField(choices=STUB_CHOICES,default=0.5)
     
     neighbors = models.TextField(default='')
     offeror_values = models.TextField(default='')
