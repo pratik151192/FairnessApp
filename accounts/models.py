@@ -48,15 +48,13 @@ class UserValues(models.Model):
 '''the robots/bots who will play with the users'''
 class Robots(models.Model):
     COMFORT_NEU=0.5
-    COMFORT_MAX=1.0
+    #COMFORT_MAX=1.0
     COMFORT_CHOICES=(
-        (COMFORT_NEU,'NEU'),
-        (COMFORT_MAX,'MAX'))
+        (COMFORT_NEU,'NEU'))
     STUB_NEUR=0.5
-    STUB_MIN=0.0
+    #STUB_MIN=0.0
     STUB_CHOICES=(
-        (STUB_NEUR,'NEUR'),
-        (STUB_MIN,'MIN'))
+        (STUB_NEUR,'NEU'))
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     #comfort = models.FloatField(default=0.0)
     comfort = models.FloatField(choices=COMFORT_CHOICES)
