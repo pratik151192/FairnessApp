@@ -50,18 +50,18 @@ class Robots(models.Model):
     COMFORT_NEU=0.5
     #COMFORT_MAX=1.0
     COMFORT_CHOICES=(
-        (COMFORT_NEU,'NEU'))
+        (COMFORT_NEU,0.5))
     STUB_NEUR=0.5
     #STUB_MIN=0.0
     STUB_CHOICES=(
-        (STUB_NEUR,'NEU'))
+        (STUB_NEUR,0.5))
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     #comfort = models.FloatField(default=0.0)
-    #comfort = models.FloatField(choices=COMFORT_CHOICES)
-    comfort = 0.5
+    comfort = models.FloatField(choices=COMFORT_CHOICES)
+    
     #stubbornness = models.FloatField(default=0.0)
-    #stubbornness = models.FloatField(choices=STUB_CHOICES)
-    stubbornness=0.5
+    stubbornness = models.FloatField(choices=STUB_CHOICES)
+    
     neighbors = models.TextField(default='')
     offeror_values = models.TextField(default='')
     acceptor_values = models.TextField(default='')
