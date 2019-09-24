@@ -57,9 +57,11 @@ class Robots(models.Model):
         (STUB_NEUR,'NEU'))
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     #comfort = models.FloatField(default=0.0)
-    comfort = models.FloatField(choices=COMFORT_CHOICES)
+    #comfort = models.FloatField(choices=COMFORT_CHOICES)
+    comfort = 0.5
     #stubbornness = models.FloatField(default=0.0)
-    stubbornness = models.FloatField(choices=STUB_CHOICES)
+    #stubbornness = models.FloatField(choices=STUB_CHOICES)
+    stubbornness=0.5
     neighbors = models.TextField(default='')
     offeror_values = models.TextField(default='')
     acceptor_values = models.TextField(default='')
