@@ -50,11 +50,15 @@ class Robots(models.Model):
     #COMFORT_NEU=0.5
     #COMFORT_MAX=1.0
     COMFORT_CHOICES=(
-        (0.5,'Neur'))
+        (0.5,'Neur'),
+        (1.0, "MAX")
+        )
     #STUB_NEUR=0.5
     #STUB_MIN=0.0
     STUB_CHOICES=(
-        (0.5,'Neur'))
+        (0.5,'Neur'),
+        (1.0, 'Max')
+        )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     #comfort = models.FloatField(default=0.0)
     comfort = models.FloatField(choices=COMFORT_CHOICES)
