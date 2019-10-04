@@ -17,7 +17,9 @@ class UserProfile(models.Model):
 class UserValues(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     firstLogin = models.BooleanField(default=True)
+    COMFORT_CHOICES=((0.5,'Neur'))
     comfort = models.FloatField(default=0.0)
+    STUB_CHOICES=((0.5,'Neur'))
     stubbornness = models.FloatField(default=0.0)
     neighbors = models.TextField(default='')
     offeror_values = models.TextField(default='')
@@ -46,25 +48,21 @@ class UserValues(models.Model):
     last_robot_value = models.FloatField(default=0)
 
 '''the robots/bots who will play with the users'''
+COMFORT_CHOICES=((0.5,'Neur'))
+STUB_CHOICES=((0.5,'Neu'))
 class Robots(models.Model):
     #COMFORT_NEU=0.5
     #COMFORT_MAX=1.0
-    COMFORT_CHOICES=(
-        (0.5,'Neur'),
-        (1.0, "MAX")
-        )
+    #OMFORT_CHOICES=((0.5,'Neur'))
     #STUB_NEUR=0.5
     #STUB_MIN=0.0
-    STUB_CHOICES=(
-        (0.5,'Neur'),
-        (1.0, 'Max')
-        )
+    #STUB_CHOICES=((0.5,'Neur'))
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     #comfort = models.FloatField(default=0.0)
-    comfort = models.FloatField(choices=COMFORT_CHOICES)
+    comfort = models.FloatField(choices=COMFORT_CHOICES, default='Neur')
     
     #stubbornness = models.FloatField(default=0.0)
-    stubbornness = models.FloatField(choices=STUB_CHOICES)
+    stubbornness = models.FloatField(choices=STUB_CHOICES, default='Neu')
     
     neighbors = models.TextField(default='')
     offeror_values = models.TextField(default='')
