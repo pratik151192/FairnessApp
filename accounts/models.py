@@ -17,10 +17,12 @@ class UserProfile(models.Model):
 class UserValues(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     firstLogin = models.BooleanField(default=True)
-    COMFORT_CHOICES=[(0.5,'Neur')]
-    comfort = models.FloatField(default=0.0)
-    STUB_CHOICES=((0.5,'Neur'))
-    stubbornness = models.FloatField(default=0.0)
+    STUB_NEUR=0.5
+    COMFORT_NEU=0.5
+    COMFORT_CHOICES=[(COMFORT_NEU,'Neur')]
+    STUB_CHOICES=[(STUB_NEUR,'Neu')]
+    comfort = models.FloatField(choices=COMFORT_CHOICES)
+    stubbornness = models.FloatField(choices=STUB_CHOICES)
     neighbors = models.TextField(default='')
     offeror_values = models.TextField(default='')
     user_offeror_values = models.TextField(default='')
@@ -58,7 +60,7 @@ class Robots(models.Model):
     #STUB_CHOICES=((0.5,'Neur'))
     COMFORT_CHOICES=[(COMFORT_NEU,'Neur')]
     STUB_CHOICES=[(STUB_NEUR,'Neu')]
-    
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     #comfort = models.FloatField(default=0.0)
     comfort = models.FloatField(choices=COMFORT_CHOICES, default='Neur')
