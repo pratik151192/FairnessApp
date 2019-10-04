@@ -17,7 +17,7 @@ def getDefaultUserValues():
         offeror_negative_loss_count = acceptor_negative_loss_count = 1
         offeror_negative_loss = acceptor_negative_loss = abs(general_loss)
 
-    user_stubbornness = round(random(), 5)
+    #user_stubbornness = round(random(), 5)
     user_stubbornness = 0.5
 
     dict['comfort'] = user_discretized_comfort
