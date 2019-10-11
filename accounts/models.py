@@ -101,12 +101,12 @@ def create_profile(sender, instance, created, **kwargs):
                                                   firstName = instance.first_name,
                                                   lastName = instance.last_name)
         dict = getValues.getDefaultUserValues()
-        values_profile = UserValues.objects.create(user = instance, comfort = 0.5, #dict['comfort'],
-                                                   stubbornness = 0.5, #dict['stubbornness'], 
-                                                   offeror_values=str(0.5),   #str(dict['comfort']),
-                                                   acceptor_values = str(0.5), #str(dict['comfort']), 
-                                                   user_offeror_values=str(0.5), #str(dict['comfort']),
-                                                   user_acceptor_values = str(0.5),  #str(dict['comfort']), 
+        values_profile = UserValues.objects.create(user = instance, comfort = dict['comfort'],
+                                                   stubbornness = dict['stubbornness'], 
+                                                   offeror_values=str(dict['comfort']),
+                                                   acceptor_values = str(dict['comfort']), 
+                                                   user_offeror_values=str(dict['comfort']),
+                                                   user_acceptor_values = str(dict['comfort']), 
                                                    offeror_positive_loss_count = dict['oplc'],
                                                    offeror_negative_loss_count = dict['onlc'], acceptor_positive_loss_count = dict['aplc'],
                                                    acceptor_negative_loss_count = dict['anlc'], offeror_positive_loss = dict['opl'],
