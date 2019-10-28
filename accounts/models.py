@@ -116,7 +116,7 @@ def create_profile(sender, instance, created, **kwargs):
         for i in range (0,10):
             dict = getValues.getDefaultUserValues()
             robot = Robots.objects.create(user = instance, comfort = 0.8, #dict['comfort'],
-                                              stubbornness = 0.2, #dict['stubbornness'], 
+                                              stubbornness = 0.8, #dict['stubbornness'], 
                                               offeror_values=str(0.8),#str(dict['comfort']),
                                               acceptor_values =str(0.8), #str(dict['comfort']),
                                               offeror_positive_loss_count = dict['oplc'],
