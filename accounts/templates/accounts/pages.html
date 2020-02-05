@@ -2,25 +2,15 @@
 
 {% block head %}
     <title>Content</title>
-````<style>
+    <style>
         button {
             cursor: pointer;
         }
+        img {
+            border-style: none !important;
+        }
     </style>
-    <script>
-        $( document ).ready(function() {
-            $('#next').hide()
-            $('#privacy').hide()
-            $('#Yes').click(function() {
-                $('#next').hide()
-                $('#privacy').show()
-            });
-            $('#No').click(function() {
-                $('#privacy').hide()
-                $('#next').show();
-            });
-         });
-    </script>
+
 {% endblock %}
 
 {% block body %}
@@ -31,11 +21,11 @@
             <strong>Warning!</strong> Please reload the page if you're not seeing the image!
         </div>
 
-    <b>Please look at the below image and read the associated content. Kindly answer the question
-        as if it were a real-life situation.</b></div><br><br>
-    <div height="200" width="200">
+    <b>Please look at the below image and its note.  Answer the question
+        as if it were a photo of your choosing or chosen by a friend.</b></div><br><br>
+    <div>
         {% load static %}
-        <center><img src="{% static imagePath %}" alt="My image1" height="100%" width="500" /></center>
+        <img src="{% static imagePath %}" alt="My image1" />
         <!--<center><img src="/static/images/{{ image_id }}.png" alt="My image" height="100%" width="500" /></center>-->
     </div>
 
@@ -101,5 +91,18 @@
 </form>
 {% endif %}
 </div>
-
+<script>
+        $( document ).ready(function() {
+            $('#next').hide()
+            $('#privacy').hide()
+            $('#Yes').click(function() {
+                $('#next').hide()
+                $('#privacy').show()
+            });
+            $('#No').click(function() {
+                $('#privacy').hide()
+                $('#next').show();
+            });
+         });
+</script>
 {% endblock %}

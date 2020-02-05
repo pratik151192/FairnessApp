@@ -45,7 +45,10 @@ image_ids_flickr = {
     "42796962380": 12,
 }
 
-names = ['Monica', 'Chandler', 'Joey', 'Phoebe', 'Rachel', 'Ross', 'Eric', 'Sloan', 'Vince', 'Ari', 'Shauna', 'Amanda']
+names = [
+    'Monica', 'Chandler', 'Joey', 'Phoebe', 'Rachel', 'Ross', 'Eric', 'Sloan',
+    'Vince', 'Ari', 'Shauna', 'Amanda'
+]
 
 settings = {
     0: 'Private/Only Me',
@@ -54,22 +57,29 @@ settings = {
     0.75: 'Friends of Friends of Friends',
     1: 'Public'
 }
+
+
 def getImageTexts():
     return texts
+
 
 def getNames():
     return names
 
+
 def getSettings():
     return settings
+
 
 def getFlickrIds():
     return image_ids_flickr
 
+
 def getExtensions():
     return extensions
 
+
 def getRole(imageId):
     if imageId % 3 == 1: return "Friends"
-    elif imageId %3 == 2: return "Best Friends"
+    elif imageId % 3 == 2: return "Best Friends"
     else: return "Family members"

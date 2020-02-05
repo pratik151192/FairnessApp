@@ -5,7 +5,7 @@ from django.dispatch import receiver
 from accounts.algorithms import getValues
 
 # Create your models here.
-
+#try to update
 '''basic profile model for a user'''
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -17,8 +17,12 @@ class UserProfile(models.Model):
 class UserValues(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     firstLogin = models.BooleanField(default=True)
-    comfort = models.FloatField(default=0.0)
-    stubbornness = models.FloatField(default=0.0)
+    STUB_NEUR=0.5
+    COMFORT_NEU=0.5
+    COMFORT_CHOICES=[(COMFORT_NEU,'Neur')]
+    STUB_CHOICES=[(STUB_NEUR,'Neu')]
+    comfort = models.FloatField(choices=COMFORT_CHOICES)
+    stubbornness = models.FloatField(choices=STUB_CHOICES)
     neighbors = models.TextField(default='')
     offeror_values = models.TextField(default='')
     user_offeror_values = models.TextField(default='')
@@ -46,10 +50,24 @@ class UserValues(models.Model):
     last_robot_value = models.FloatField(default=0)
 
 '''the robots/bots who will play with the users'''
+
 class Robots(models.Model):
+    COMFORT_NEU=0.5
+    #COMFORT_MAX=1.0
+    #OMFORT_CHOICES=((0.5,'Neur'))
+    STUB_NEUR=0.5
+    #STUB_MIN=0.0
+    #STUB_CHOICES=((0.5,'Neur'))
+    COMFORT_CHOICES=[(COMFORT_NEU,'Neur')]
+    STUB_CHOICES=[(STUB_NEUR,'Neu')]
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    comfort = models.FloatField(default=0.0)
-    stubbornness = models.FloatField(default=0.0)
+    #comfort = models.FloatField(default=0.0)
+    comfort = models.FloatField(choices=COMFORT_CHOICES, default='Neur')
+    
+    #stubbornness = models.FloatField(default=0.0)
+    stubbornness = models.FloatField(choices=STUB_CHOICES, default='Neu')
+    
     neighbors = models.TextField(default='')
     offeror_values = models.TextField(default='')
     acceptor_values = models.TextField(default='')
@@ -84,9 +102,12 @@ def create_profile(sender, instance, created, **kwargs):
                                                   lastName = instance.last_name)
         dict = getValues.getDefaultUserValues()
         values_profile = UserValues.objects.create(user = instance, comfort = dict['comfort'],
-                                                   stubbornness = dict['stubbornness'], offeror_values=str(dict['comfort']),
-                                                   acceptor_values = str(dict['comfort']), user_offeror_values=str(dict['comfort']),
-                                                   user_acceptor_values = str(dict['comfort']), offeror_positive_loss_count = dict['oplc'],
+                                                   stubbornness = dict['stubbornness'], 
+                                                   offeror_values=str(dict['comfort']),
+                                                   acceptor_values = str(dict['comfort']), 
+                                                   user_offeror_values=str(dict['comfort']),
+                                                   user_acceptor_values = str(dict['comfort']), 
+                                                   offeror_positive_loss_count = dict['oplc'],
                                                    offeror_negative_loss_count = dict['onlc'], acceptor_positive_loss_count = dict['aplc'],
                                                    acceptor_negative_loss_count = dict['anlc'], offeror_positive_loss = dict['opl'],
                                                    offeror_negative_loss = dict['onl'], acceptor_positive_loss = dict['apl'],
@@ -94,9 +115,11 @@ def create_profile(sender, instance, created, **kwargs):
 
         for i in range (0,10):
             dict = getValues.getDefaultUserValues()
-            robot = Robots.objects.create(user = instance, comfort = dict['comfort'],
-                                              stubbornness = dict['stubbornness'], offeror_values=str(dict['comfort']),
-                                              acceptor_values = str(dict['comfort']),offeror_positive_loss_count = dict['oplc'],
+            robot = Robots.objects.create(user = instance, comfort = 0.2, #dict['comfort'],
+                                              stubbornness = 0.8, #dict['stubbornness'], 
+                                              offeror_values=str(0.2),#str(dict['comfort']),
+                                              acceptor_values =str(0.2), #str(dict['comfort']),
+                                              offeror_positive_loss_count = dict['oplc'],
                                               offeror_negative_loss_count = dict['onlc'], acceptor_positive_loss_count = dict['aplc'],
                                               acceptor_negative_loss_count = dict['anlc'], offeror_positive_loss = dict['opl'],
                                               offeror_negative_loss = dict['onl'], acceptor_positive_loss = dict['apl'],

@@ -1,49 +1,45 @@
 {% extends 'base.html' %}
 {% block head %}
 <title>Content</title>
-````<style>
+<style>
         button {
             cursor: pointer;
         }
+        img {
+            border-style: none !important;
+        }
     </style>
-    <script>
-        $( document ).ready(function() {
-            $('#privacy').hide()
-            $('#next').hide()
-            $('#Yes').click(function() {
-                $('#next').hide()
-                $('#privacy').show()
-            });
-            $('#No').click(function() {
-                $('#privacy').hide()
-                $('#next').show();
-            });
-         });
-    </script>
+
+
 {% endblock %}
 {% block body %}
 <br><br><br>
 <div class="container">
-{% if form and not image_id %}
-    <!--<div class="alert alert-warning" role="alert">-->
-        <!--<strong>Warning!</strong> Please reload the page if you're not seeing the image after uploading!-->
-    <!--</div>-->
-    {% if error %}
+        
+ {% if form and not image_id %}
+    <div class="alert alert-warning" role="alert">-->
+        <strong>Warning!</strong> Please reload the page if you're not seeing the image after uploading!-->
+    </div>
+   {% if error %}
         <div class="alert alert-danger">
             <strong>{{ error|escape }}</strong>
         </div>
     {% endif %}
-    <!--Please select a photo from the Flickr album and copy the link below after opening the photo.</p>-->
+   
+Please select a photo from the Flickr album and copy the link below after opening the photo.</p> -->
+        
     <p>Please select a photo you wish to share from the Flickr album and link to it below</p>
     <p><a target="_blank" href="https://www.flickr.com/photos/166878378@N08/albums/72157701200346045" class="btn btn-info" role="button" aria-pressed="true">Go to album</a></p>
     <p>Please note that we need you to post the URL or link of the photo; which will appear on the address bar (where you enter the website name) <b>after</b> you've opened the photo by clicking on it.</p>
-    <p><form method="post" name="photo">
+    <p><form method="post" name="photo"> 
         {% csrf_token %}
         {{ form.as_p }}
         <button class="btn btn-info" type="submit" role="button" name="change" aria-pressed="true">Upload</button>
     </form></p>
 {% endif %}
-{% if image_id %}
+
+{% if image_id %} 
+
     <p>You are tagged in this photo with <b>{{ name }}</b> (one of your {{ role }}).</p>
     <p>According to what you set for your privacy setting, this image will be shared with <b>{{ setting }}</b>.</p>
     <p>If you wish to select a different setting than the default,
@@ -53,9 +49,9 @@
 
 <!-- Modal -->
 
-    <div height="200" width="200">
+    <div>
         {% load static %}
-        <center><img src="{% static imagePath %}" alt="My image" height="100%" width="500" /></center>
+        <img src="{% static imagePath %}" alt="My image" />
     </div><br>
     <!--<p>Would you like to share this photo?</p>-->
 
@@ -66,10 +62,10 @@
     <a href="{% url 'upload' %}" class="btn btn-info">ReUpload</a>
 
     </form></p>
-{% endif %}
+{% endif %} 
 {% if result %}
     {% if 'pass' in result %}
-    <p>Yayy! <b>{{ name }}</b> accepted your request for tagging!</p>
+    <p>Great! <b>{{ name }}</b> accepted your request for tagging!</p>
             <form method="post">
                 {% csrf_token %}
                 <b>Let's continue with the study!</b>
@@ -149,5 +145,18 @@
       </div>
     </div>
   </div>
-
+<script>
+        $( document ).ready(function() {
+            $('#privacy').hide()
+            $('#next').hide()
+            $('#Yes').click(function() {
+                $('#next').hide()
+                $('#privacy').show()
+            });
+            $('#No').click(function() {
+                $('#privacy').hide()
+                $('#next').show();
+            });
+         });
+    </script>
 {% endblock %}

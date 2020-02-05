@@ -11,6 +11,7 @@ def getRobot(request, toggle):
     uservalues = UserValues.objects.get(user=user)
     robots = Robots.objects.filter(user=user)
     current_robot = random.choice(robots)
+    #current_robot=robots
     if toggle == 1:
         offeror = current_robot
         acceptor = uservalues
