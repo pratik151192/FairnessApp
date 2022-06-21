@@ -39,7 +39,7 @@ matplotlib==2.0.2
 mongo==0.2.0
 nbformat==4.4.0
 networkx==1.11
-numpy==1.13.1
+numpy==1.22.0
 oauthlib==2.0.4
 olefile==0.44
 optional-django==0.1.0
